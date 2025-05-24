@@ -1,32 +1,39 @@
 export const initialStore=()=>{
   return{
-    message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
+    CHARACTER_URL: "https://www.swapi.tech/api/people",
+    PLANETS_URL: "https://www.swapi.tech/api/planets",
+    VEHICLE_URL: "https://www.swapi.tech/api/vehicles",
+    CHARACTER_IMAGE_URL: "https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/people",
+    PLANETS_IMAGE_URL: "https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/planets",
+    VEHICLE_IMAGE_URL: "https://raw.githubusercontent.com/breatheco-de/swapi-images/master/public/images/vehicles",
+    vehicles: [],
+    characters: [],
+    planets: [],
+    loading: true, 
+    favorites: [],
   }
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
+  switch (action.type) {
+    case "SET_LOADING":
+      return { ...store, loading: action.payload };
+    case "SET_CHARACTERS":
+      return { ...store, characters: action.payload };
+    case "SET_PLANETS":
+      return { ...store, planets: action.payload };
+    case "SET_VEHICLES":
+      return { ...store, vehicles: action.payload };
+    case "ADD_FAVORITE":
+      if (store.favorites.includes(action.payload)) return store;
+      return { ...store, favorites: [...store.favorites, action.payload] };
 
-      const { id,  color } = action.payload
-
+    case "REMOVE_FAVORITE":
       return {
         ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
+        favorites: store.favorites.filter((name) => name !== action.payload),
       };
-    default:
-      throw Error('Unknown action.');
-  }    
-}
+      default:
+        throw Error('Unknown action.');
+      }
+  }   
