@@ -108,10 +108,25 @@ export const Home = () => {
                   Read More
                 </button>
                 <button
-                  className="btn btn-outline-warning"
-                  onClick={() =>
-                    dispatch({ type: "ADD_FAVORITE", payload: char.name })
-                  }
+                  className={`btn ${
+                    store.favorites.find(
+                      (charName) => charName === char.name
+                    )
+                      ? "btn-warning"
+                      : "btn-outline-warning"
+                  }`}
+                  onClick={() => {
+                    if (
+                      store.favorites.find(
+                        (charName) => charName === char.name
+                      )
+                    )
+                      return dispatch({
+                        type: "REMOVE_FAVORITE",
+                        payload: char.name,
+                      });
+                    dispatch({ type: "ADD_FAVORITE", payload: char.name });
+                  }}
                 >
                   <i className="fa-solid fa-heart"></i>
                 </button>
@@ -157,10 +172,25 @@ export const Home = () => {
                   Read More
                 </button>
                 <button
-                  className="btn btn-outline-warning"
-                  onClick={() =>
-                    dispatch({ type: "ADD_FAVORITE", payload: planet.name })
-                  }
+                  className={`btn ${
+                    store.favorites.find(
+                      (planetName) => planetName === planet.name
+                    )
+                      ? "btn-warning"
+                      : "btn-outline-warning"
+                  }`}
+                  onClick={() => {
+                    if (
+                      store.favorites.find(
+                        (planetName) => planetName === planet.name
+                      )
+                    )
+                      return dispatch({
+                        type: "REMOVE_FAVORITE",
+                        payload: planet.name,
+                      });
+                    dispatch({ type: "ADD_FAVORITE", payload: planet.name });
+                  }}
                 >
                   <i className="fa-solid fa-heart"></i>
                 </button>
@@ -206,10 +236,25 @@ export const Home = () => {
                   Read More
                 </button>
                 <button
-                  className="btn btn-outline-warning"
-                  onClick={() =>
-                    dispatch({ type: "ADD_FAVORITE", payload: vehicle.name })
-                  }
+                  className={`btn ${
+                    store.favorites.find(
+                      (vehicleName) => vehicleName === vehicle.name
+                    )
+                      ? "btn-warning"
+                      : "btn-outline-warning"
+                  }`}
+                  onClick={() => {
+                    if (
+                      store.favorites.find(
+                        (vehicleName) => vehicleName === vehicle.name
+                      )
+                    )
+                      return dispatch({
+                        type: "REMOVE_FAVORITE",
+                        payload: vehicle.name,
+                      });
+                    dispatch({ type: "ADD_FAVORITE", payload: vehicle.name });
+                  }}
                 >
                   <i className="fa-solid fa-heart"></i>
                 </button>
